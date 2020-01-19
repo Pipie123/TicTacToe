@@ -1,35 +1,40 @@
 import React from 'react';
 import {Button, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
-export default function Play({history}) {
-
-    return (
-        <View>
+export default class Play extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        const history = this.props;
+        return (
             <View>
-                <TouchableOpacity onPress= {() => history.push("/")}>
-                        <Image style = {styles.arrow}
-                               source = {require("./assets/Arrow.png")}/>
-                </TouchableOpacity>
-                <Text style={styles.titleBar}>Choose a Game Mode</Text>
-            </View>
-            <View style = {styles.buttonMainContainer}>
-                <Image style = {styles.customImage1}
-                       source={require("./assets/shield.png")}/>
-                <View style = {styles.customButton1}>
-                    <TouchableOpacity onPress= {() => history.push("/pvp")}>
-                        <Text style = {styles.customButtonFont1}>V.S. Player</Text>
+                <View>
+                    <TouchableOpacity onPress={() => this.props.history.push("/")}>
+                        <Image style={styles.arrow}
+                               source={require("./assets/Arrow.png")}/>
                     </TouchableOpacity>
+                    <Text style={styles.titleBar}>Choose a Game Mode</Text>
                 </View>
-                <Image style = {styles.customImage2}
-                       source={require("./assets/gear.png")}/>
-                <View style = {styles.customButton2}>
-                    <TouchableOpacity onPress= {() => history.push("/ai")}>
-                        <Text style = {styles.customButtonFont2}>V.S. AI</Text>
-                    </TouchableOpacity>
+                <View style={styles.buttonMainContainer}>
+                    <Image style={styles.customImage1}
+                           source={require("./assets/shield.png")}/>
+                    <View style={styles.customButton1}>
+                        <TouchableOpacity onPress={() => this.props.history.push("/pvp")}>
+                            <Text style={styles.customButtonFont1}>V.S. Player</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <Image style={styles.customImage2}
+                           source={require("./assets/gear.png")}/>
+                    <View style={styles.customButton2}>
+                        <TouchableOpacity onPress={() => this.props.history.push("/ai")}>
+                            <Text style={styles.customButtonFont2}>V.S. AI</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
-        </View>
-    );
+        );
+    }
 }
 
 
@@ -67,7 +72,7 @@ const styles = StyleSheet.create({
         width: 200,
         height: 100,
         textAlign: "center",
-        backgroundColor: "red",
+        backgroundColor: "#85C8B0",
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 16,
@@ -82,7 +87,7 @@ const styles = StyleSheet.create({
         width: 200,
         height: 100,
         textAlign: "center",
-        backgroundColor: "red",
+        backgroundColor: "#FF726F",
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 20

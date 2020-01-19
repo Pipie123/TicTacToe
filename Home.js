@@ -1,39 +1,43 @@
 import React from 'react';
 import {Animated, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
-
-export default function Home({history}) {
-
-    return (
-        <View>
-            <View style = {styles.mainContainer}>
-                <View style = {styles.container}>
+export default class Home extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        const history = this.props;
+        return (
+            <View>
+                <View style={styles.mainContainer}>
+                    <View style={styles.container}>
+                        <Image
+                            style={styles.introImage}
+                            source={require('./assets/Tic.png')}
+                        />
+                    </View>
+                    <View style={styles.container1}>
+                        <Image
+                            style={styles.introImage}
+                            source={require('./assets/Tac.png')}
+                        />
+                    </View>
+                    <View style={styles.container2}>
+                        <Image
+                            style={styles.introImage}
+                            source={require('./assets/Toe.png')}
+                        />
+                    </View>
                     <Image
-                        style = {styles.introImage}
-                        source = {require('./assets/Tic.png')}
-                    />
+                        style={styles.backgroundImage}
+                        source={require('./assets/board.png')}/>
                 </View>
-                <View style = {styles.container1}>
-                    <Image
-                        style = {styles.introImage}
-                        source = {require('./assets/Tac.png')}
-                    />
-                </View>
-                <View style = {styles.container2}>
-                    <Image
-                        style = {styles.introImage}
-                        source = {require('./assets/Toe.png')}
-                    />
-                </View>
-                <Image
-                    style = {styles.backgroundImage}
-                    source = {require('./assets/board.png')}/>
+                <TouchableOpacity onPress={() => this.props.history.push("/play")}>
+                    <Text style={styles.startFont}>Tap to Start</Text>
+                </TouchableOpacity>
             </View>
-            <TouchableOpacity onPress= {() => history.push("/play")}>
-                <Text style = {styles.startFont}>Tap to Start</Text>
-            </TouchableOpacity>
-        </View>
-    );
+        );
+    }
 }
 
 
