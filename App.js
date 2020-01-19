@@ -12,7 +12,7 @@ export default class App extends React.Component {
         return (
             <NativeRouter>
                 <Switch>
-                    <Route exact path="/" component={Home}/>
+                    <Route exact path="/a" component={Home}/>
                     <Route exact path="/play" component={Play}/>
                     <Route exact path="/pvp" component={Pvp}/>
                     <Route exact path="/ai" component={Ai}/>
