@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
 export default class Play extends React.Component {
     constructor(props) {

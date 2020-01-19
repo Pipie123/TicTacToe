@@ -1,5 +1,5 @@
 import React from 'react';
-import {Animated, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
 export default class Home extends React.Component {
     constructor(props) {

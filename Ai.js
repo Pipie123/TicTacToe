@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity, Alert } from 'react-native';
 import {MaterialCommunityIcons as Icon} from "react-native-vector-icons";
-import TouchableHighlight from "react-native-web/dist/exports/TouchableHighlight";
 
 export default class Pvp extends React.Component {
     constructor(props) {
