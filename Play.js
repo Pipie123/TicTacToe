@@ -1,12 +1,23 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity, Animated} from 'react-native';
 
 export default class Play extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            opacity: new Animated.Value(0),
+            useNativeDriver: true,
+        }
     }
+
+    onLoad = () => {
+        Animated.timing(this.state.opacity, {
+            toValue: 1,
+            duration: 1000,
+            useNativeDriver: true,
+        }).start()
+    };
     render() {
-        const history = this.props;
         return (
             <View>
                 <View>
@@ -17,14 +28,46 @@ export default class Play extends React.Component {
                     <Text style={styles.titleBar}>Choose a Game Mode</Text>
                 </View>
                 <View style={styles.buttonMainContainer}>
-                    <Image style={styles.customImage1}
+                    <Animated.Image
+                        onLoad = {this.onLoad()}
+                        {...this.props}
+                        style={[styles.customImage1,
+                            {
+                                opacity: this.state.opacity,
+                                transform: [
+                                    {scale: this.state.opacity.interpolate({
+                                            inputRange: [0, 1],
+                                            outputRange: [0.85, 1],
+                                        })
+
+                                    }
+                                ]
+                            },
+                            this.props.style,
+                        ]}
                            source={require("./assets/shield.png")}/>
                     <View style={styles.customButton1}>
                         <TouchableOpacity onPress={() => this.props.history.push("/pvp")}>
                             <Text style={styles.customButtonFont1}>V.S. Player</Text>
                         </TouchableOpacity>
                     </View>
-                    <Image style={styles.customImage2}
+                    <Animated.Image
+                        onLoad = {this.onLoad()}
+                        {...this.props}
+                        style={[styles.customImage2,
+                            {
+                                opacity: this.state.opacity,
+                                transform: [
+                                    {scale: this.state.opacity.interpolate({
+                                            inputRange: [0, 1],
+                                            outputRange: [0.85, 1],
+                                        })
+
+                                    }
+                                ]
+                            },
+                            this.props.style,
+                        ]}
                            source={require("./assets/gear.png")}/>
                     <View style={styles.customButton2}>
                         <TouchableOpacity onPress={() => this.props.history.push("/ai")}>

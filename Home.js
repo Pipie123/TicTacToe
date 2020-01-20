@@ -1,30 +1,83 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import {Animated, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
 export default class Home extends React.Component {
+
+
+
     constructor(props) {
         super(props);
+        this.state = {
+            opacity: new Animated.Value(0),
+            useNativeDriver: true,
+        }
     }
+
+    onLoad = () => {
+        Animated.timing(this.state.opacity, {
+            toValue: 1,
+            duration: 1000,
+            useNativeDriver: true,
+        }).start()
+    };
     render() {
-        const history = this.props;
         return (
             <View>
                 <View style={styles.mainContainer}>
                     <View style={styles.container}>
-                        <Image
-                            style={styles.introImage}
+                        <Animated.Image onLoad = {this.onLoad()}{...this.props} style={[styles.introImage,
+                                { opacity: this.state.opacity, transform: [
+                                        {scale: this.state.opacity.interpolate({
+                                                inputRange: [0, 1],
+                                                outputRange: [0.85, 1],
+                                            })
+
+                                        }
+                                    ]
+                                },
+                                this.props.style,
+                            ]}
                             source={require('./assets/Tic.png')}
                         />
                     </View>
                     <View style={styles.container1}>
-                        <Image
-                            style={styles.introImage}
+                        <Animated.Image
+                            onLoad = {this.onLoad()}
+                            {...this.props}
+                            style={[styles.introImage,
+                                {
+                                    opacity: this.state.opacity,
+                                    transform: [
+                                        {scale: this.state.opacity.interpolate({
+                                                inputRange: [0, 1],
+                                                outputRange: [0.85, 1],
+                                            })
+
+                                        }
+                                    ]
+                                },
+                                this.props.style,
+                            ]}
                             source={require('./assets/Tac.png')}
                         />
                     </View>
                     <View style={styles.container2}>
-                        <Image
-                            style={styles.introImage}
+                        <Animated.Image
+                            onLoad = {this.onLoad()}
+                            {...this.props}
+                            style={[styles.introImage, {
+                                    opacity: this.state.opacity,
+                                    transform: [
+                                        {scale: this.state.opacity.interpolate({
+                                                inputRange: [0, 1],
+                                                outputRange: [0.85, 1],
+                                            })
+
+                                        }
+                                    ]
+                                },
+                                this.props.style,
+                            ]}
                             source={require('./assets/Toe.png')}
                         />
                     </View>
