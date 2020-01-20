@@ -20,7 +20,7 @@ export default class Pvp extends React.Component {
     componentDidMount() {
         this.initializeGame();
     }
-
+    // Resets the board
     initializeGame = () => {
         this.setState({
             gameState: [
@@ -31,7 +31,7 @@ export default class Pvp extends React.Component {
         })
     };
     checkPlayerTurn = () => {
-        //This initilizes where it originally has Player 1 go twice. Thus I have to reverse the values so that way
+        //This initializes where it originally has Player 1 go twice. Thus I have to reverse the values so that way
         //player 1 and player 2 alternate.
         if (this.state.counter % 2) {
             this.state.currentPlayerName = "It is Player 1's turn"
@@ -69,7 +69,7 @@ export default class Pvp extends React.Component {
             Alert.alert("Player 2 won");
             this.initializeGame();
         }
-        //Really bad way to check if board is full with no winners
+        //Really inefficient way to check if board is full with no winners
         if (winner === 0 && board[0][0] !== 0 && board[0][1] !== 0 &&
             board[0][2] !== 0 && board[1][0] !== 0 && board[1][1] !== 0 &&
             board[1][2] !== 0 && board[2][0] !== 0 && board[2][1] !== 0 &&
@@ -78,59 +78,51 @@ export default class Pvp extends React.Component {
             this.initializeGame();
         }
     };
+    /* If the block is read as 1, then show X. If block is read as -1, then it is O.
+    Default represents the initial state of the block, therefore it is a blank View.
+     */
+
     renderIcon = (row, col) => {
         let value = this.state.gameState[row][col];
         switch (value) {
             case 1:
                 return <Icon name="close" style={styles.xIcon}/>;
             case -1:
-                return <Icon name="radiobox-blank" style={styles.oIcon}/>
+                return <Icon name="radiobox-blank" style={styles.oIcon}/>;
             default:
                 return <View />
         }
     };
 
+    //Used to check if blocks have same value.
+    checkBlock = (a, b, c) => {
+    return (a === b && a === c)
+};
+    /*
+    Checks which rows/cols/diagonals have matching values for certain blocks.
+    States winner or tie depending on scenario
+     */
+
     getWinner = () => {
         let board = this.state.gameState;
-        let total = 0;
 
         for (let i = 0; i < 3; i++) {
-            total = board[i][0] + board[i][1] + board[i][2];
-            if (total === 3) {
-                return 1;
-            }
-            else if (total === -3) {
-                return -1;
-            }
+            if (this.checkBlock(board[i][0], board[i][1], board[i][2])) {
+            return board[i][0]}
         }
         for (let i = 0; i < 3; i++) {
-            total = board[0][i] + board[1][i] + board[2][i];
-            if (total === 3) {
-                return 1;
-            }
-            else if (total === -3) {
-                return -1;
+            if (this.checkBlock(board[0][i], board[1][i], board[2][i])) {
+                return board[0][i];
             }
         }
-        total = board[0][0] + board[1][1] + board[2][2];
-        if (total === 3) {
-            return 1;
-        }
-        else if (total === -3) {
-            return -1;
-        }
-        total = board[2][0] + board[1][1] + board[0][2];
-        if (total === 3) {
-            return 1;
-        }
-        else if (total === -3) {
-            return -1;
+
+        if (this.checkBlock(board[0][0], board[1][1], board[2][2]) || this.checkBlock(board[2][0], board[1][1], board[0][2])) {
+            return board [1][1];
         }
         return 0;
     };
 
     render() {
-        const history = this.props;
         return (
             <View style={styles.backgroundColor}>
                 <View>
