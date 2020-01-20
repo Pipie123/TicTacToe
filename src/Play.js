@@ -23,7 +23,7 @@ export default class Play extends React.Component {
                 <View>
                     <TouchableOpacity onPress={() => this.props.history.push("/")}>
                         <Image style={styles.arrow}
-                               source={require("./assets/Arrow.png")}/>
+                               source={require("../assets/Arrow.png")}/>
                     </TouchableOpacity>
                     <Text style={styles.titleBar}>Choose a Game Mode</Text>
                 </View>
@@ -45,7 +45,7 @@ export default class Play extends React.Component {
                             },
                             this.props.style,
                         ]}
-                           source={require("./assets/shield.png")}/>
+                           source={require("../assets/shield.png")}/>
                     <View style={styles.customButton1}>
                         <TouchableOpacity onPress={() => this.props.history.push("/pvp")}>
                             <Text style={styles.customButtonFont1}>V.S. Player</Text>
@@ -68,7 +68,7 @@ export default class Play extends React.Component {
                             },
                             this.props.style,
                         ]}
-                           source={require("./assets/gear.png")}/>
+                           source={require("../assets/gear.png")}/>
                     <View style={styles.customButton2}>
                         <TouchableOpacity onPress={() => Alert.alert("This function is not available (;_;)")}>
                             <Text style={styles.customButtonFont2}>V.S. AI</Text>

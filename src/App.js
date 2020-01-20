@@ -2,8 +2,8 @@ import React from 'react';
 import {NativeRouter, Switch, Route} from 'react-router-native'
 import Home from "./Home"
 import Play from "./Play"
-import Ai from "./Ai"
-import Pvp from "./Pvp"
+import Ai from "./Gameplay/Ai"
+import Pvp from "./Gameplay/Pvp"
 export default class App extends React.Component {
     constructor(props) {
         super(props);

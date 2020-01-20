@@ -20,7 +20,7 @@ export default class Pvp extends React.Component {
     componentDidMount() {
         this.initializeGame();
     }
-    // Resets the board
+
     initializeGame = () => {
         this.setState({
             gameState: [
@@ -31,7 +31,7 @@ export default class Pvp extends React.Component {
         })
     };
     checkPlayerTurn = () => {
-        //This initializes where it originally has Player 1 go twice. Thus I have to reverse the values so that way
+        //This initilizes where it originally has Player 1 go twice. Thus I have to reverse the values so that way
         //player 1 and player 2 alternate.
         if (this.state.counter % 2) {
             this.state.currentPlayerName = "It is Player 1's turn"
@@ -69,7 +69,7 @@ export default class Pvp extends React.Component {
             Alert.alert("Player 2 won");
             this.initializeGame();
         }
-        //Really inefficient way to check if board is full with no winners
+        //Really bad way to check if board is full with no winners
         if (winner === 0 && board[0][0] !== 0 && board[0][1] !== 0 &&
             board[0][2] !== 0 && board[1][0] !== 0 && board[1][1] !== 0 &&
             board[1][2] !== 0 && board[2][0] !== 0 && board[2][1] !== 0 &&
@@ -78,10 +78,6 @@ export default class Pvp extends React.Component {
             this.initializeGame();
         }
     };
-    /* If the block is read as 1, then show X. If block is read as -1, then it is O.
-    Default represents the initial state of the block, therefore it is a blank View.
-     */
-
     renderIcon = (row, col) => {
         let value = this.state.gameState[row][col];
         switch (value) {
@@ -94,30 +90,41 @@ export default class Pvp extends React.Component {
         }
     };
 
-    //Used to check if blocks have same value.
-    checkBlock = (a, b, c) => {
-    return (a === b && a === c)
-};
-    /*
-    Checks which rows/cols/diagonals have matching values for certain blocks.
-    States winner or tie depending on scenario
-     */
-
     getWinner = () => {
         let board = this.state.gameState;
+        let total = 0;
 
         for (let i = 0; i < 3; i++) {
-            if (this.checkBlock(board[i][0], board[i][1], board[i][2])) {
-            return board[i][0]}
-        }
-        for (let i = 0; i < 3; i++) {
-            if (this.checkBlock(board[0][i], board[1][i], board[2][i])) {
-                return board[0][i];
+            total = board[i][0] + board[i][1] + board[i][2];
+            if (total === 3) {
+                return 1;
+            }
+            else if (total === -3) {
+                return -1;
             }
         }
-
-        if (this.checkBlock(board[0][0], board[1][1], board[2][2]) || this.checkBlock(board[2][0], board[1][1], board[0][2])) {
-            return board [1][1];
+        for (let i = 0; i < 3; i++) {
+            total = board[0][i] + board[1][i] + board[2][i];
+            if (total === 3) {
+                return 1;
+            }
+            else if (total === -3) {
+                return -1;
+            }
+        }
+        total = board[0][0] + board[1][1] + board[2][2];
+        if (total === 3) {
+            return 1;
+        }
+        else if (total === -3) {
+            return -1;
+        }
+        total = board[2][0] + board[1][1] + board[0][2];
+        if (total === 3) {
+            return 1;
+        }
+        else if (total === -3) {
+            return -1;
         }
         return 0;
     };
@@ -128,7 +135,7 @@ export default class Pvp extends React.Component {
                 <View>
                     <TouchableOpacity onPress = {() => this.props.history.push("/play")}>
                         <Image style={styles.arrow}
-                               source={require("./assets/Arrow.png")}/>
+                               source={require("../../assets/Arrow.png")}/>
                     </TouchableOpacity>
                     <Text style={styles.titleBar}>Who will Prevail?</Text>
                     <Text style ={styles.titleBar}>{this.state.currentPlayerName}</Text>
@@ -185,38 +192,38 @@ export default class Pvp extends React.Component {
 const styles = StyleSheet.create({
     backgroundColor: {
         flex: 1,
-        backgroundColor: "#85C8B0"
+        backgroundColor: "#FF726F"
     },
     arrow: {
-        width: 75,
+    width: 75,
         height: 75,
         marginTop: 20
     }
     ,
     titleBar: {
         textAlign: "center",
-        fontFamily: "Roboto",
-        fontWeight: "bold",
-        fontSize: 30,
-        marginBottom: 30
+            fontFamily: "Roboto",
+            fontWeight: "bold",
+            fontSize: 30,
+            marginBottom: 30
     }
     ,
     tile: {
         justifyContent: "center",
-        alignItems: "center",
-        borderWidth: 5,
-        width: 125,
-        height: 125
+            alignItems: "center",
+            borderWidth: 5,
+            width: 125,
+            height: 125
     },
     tileRow: {
         justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "row"
+            alignItems: "center",
+            flexDirection: "row"
     },
     tileColumn: {
         justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column"
+            alignItems: "center",
+            flexDirection: "column"
     },
     xIcon: {
         fontSize: 80,

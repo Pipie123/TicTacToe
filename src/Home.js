@@ -37,7 +37,7 @@ export default class Home extends React.Component {
                                 },
                                 this.props.style,
                             ]}
-                            source={require('./assets/Tic.png')}
+                            source={require('../assets/Tic.png')}
                         />
                     </View>
                     <View style={styles.container1}>
@@ -58,7 +58,7 @@ export default class Home extends React.Component {
                                 },
                                 this.props.style,
                             ]}
-                            source={require('./assets/Tac.png')}
+                            source={require('../assets/Tac.png')}
                         />
                     </View>
                     <View style={styles.container2}>
@@ -78,12 +78,12 @@ export default class Home extends React.Component {
                                 },
                                 this.props.style,
                             ]}
-                            source={require('./assets/Toe.png')}
+                            source={require('../assets/Toe.png')}
                         />
                     </View>
                     <Image
                         style={styles.backgroundImage}
-                        source={require('./assets/board.png')}/>
+                        source={require('../assets/board.png')}/>
                 </View>
                 <TouchableOpacity onPress={() => this.props.history.push("/play")}>
                     <Text style={styles.startFont}>Tap to Start</Text>
