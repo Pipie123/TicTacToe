@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image, TouchableOpacity, Animated} from 'react-native';
+import {Alert, StyleSheet, Text, View, Image, TouchableOpacity, Animated} from 'react-native';
 
 export default class Play extends React.Component {
     constructor(props) {
@@ -70,7 +70,7 @@ export default class Play extends React.Component {
                         ]}
                            source={require("./assets/gear.png")}/>
                     <View style={styles.customButton2}>
-                        <TouchableOpacity onPress={() => this.props.history.push("/ai")}>
+                        <TouchableOpacity onPress={() => Alert.alert("This function is not available (;_;)")}>
                             <Text style={styles.customButtonFont2}>V.S. AI</Text>
                         </TouchableOpacity>
                     </View>
