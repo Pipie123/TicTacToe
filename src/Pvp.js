@@ -128,7 +128,7 @@ export default class Pvp extends React.Component {
                 <View>
                     <TouchableOpacity onPress = {() => this.props.history.push("/play")}>
                         <Image style={styles.arrow}
-                               source={require("../../assets/Arrow.png")}/>
+                               source={require("../assets/Arrow.png")}/>
                     </TouchableOpacity>
                     <Text style={styles.titleBar}>Who will Prevail?</Text>
                     <Text style ={styles.titleBar}>{this.state.currentPlayerName}</Text>
